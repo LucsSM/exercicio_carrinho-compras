@@ -1,19 +1,35 @@
+let precoTotal = 0;
+let carrinhoTotal = document.getElementById("valor-total");
+
+if(typeof carrinhoTotal != "undefined") {
+    let itemCarrinho = parseInt(carrinhoTotal.textContent.split("R$")[1]);
+    precoTotal = precoTotal + itemCarrinho;
+}
+
 function adicionar() {
     //obter nome do produto, valor e preço
     let produto = document.getElementById("produto").value;
     let quantidadeProduto = document.getElementById("quantidade").value;
 
     let nomeProduto = produto.split("-")[0];
-    let valorProduto = produto.split("R$")[1];
-    let valorProdutoTotal = valorProduto * quantidadeProduto;
-
+    let precoProduto = produto.split("R$")[1];
+    
     //inserir produto no carrinho de compras
     let listaProdutos = document.getElementById("lista-produtos");
     let produtoSelecionado = `<section class="carrinho__produtos__produto">
-    <span class="texto-azul">${quantidadeProduto}</span> ${nomeProduto} <span class="texto-azul">R$${valorProduto}</span>
-  </section>`;
-  listaProdutos.innerHTML = listaProdutos.innerHTML + produtoSelecionado;
+    <span class="texto-azul">${quantidadeProduto}x</span> ${nomeProduto} <span class="texto-azul">R$${precoProduto}</span>
+    </section>`;
+    listaProdutos.innerHTML = listaProdutos.innerHTML + produtoSelecionado;
+    
+    //somando produtos e mostrando o total
+    let precoProdutoTotal = precoProduto * quantidadeProduto;
+    precoTotal = precoProdutoTotal + precoTotal;
+
+    carrinhoTotal.textContent = `R$${precoTotal}`;
+
 
     console.log(nomeProduto);
-    console.log(valorProduto);
+    console.log(precoProduto);
 }
+
+console.log(precoTotal);
