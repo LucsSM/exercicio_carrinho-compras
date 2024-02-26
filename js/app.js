@@ -15,17 +15,22 @@ function adicionar() {
     let nomeProduto = produto.split("-")[0];
     let precoProduto = produto.split("R$")[1];
     
+    if(quantidadeProduto <= 0) {
+        alert("É necessário informar a quantidade do produto desejado!");
+    }else { 
     //inserir produto no carrinho de compras
     let produtoSelecionado = `<section class="carrinho__produtos__produto">
     <span class="texto-azul">${quantidadeProduto}x</span> ${nomeProduto} <span class="texto-azul">R$${precoProduto}</span>
     </section>`;
-    listaProdutos.innerHTML = listaProdutos.innerHTML + produtoSelecionado;
     
-    //somando produtos e mostrando o total
-    let precoProdutoTotal = precoProduto * quantidadeProduto;
-    precoTotal = precoProdutoTotal + precoTotal;
-
-    carrinhoTotal.textContent = `R$${precoTotal}`;
+        listaProdutos.innerHTML = listaProdutos.innerHTML + produtoSelecionado;
+        
+        //somando produtos e mostrando o total
+        let precoProdutoTotal = precoProduto * quantidadeProduto;
+        precoTotal = precoProdutoTotal + precoTotal;
+        
+        carrinhoTotal.textContent = `R$${precoTotal}`;
+    }
 }
 
 
