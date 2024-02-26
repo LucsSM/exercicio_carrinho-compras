@@ -1,4 +1,5 @@
 let precoTotal = 0;
+let listaProdutos = document.getElementById("lista-produtos");
 let carrinhoTotal = document.getElementById("valor-total");
 
 if(typeof carrinhoTotal != "undefined") {
@@ -15,7 +16,6 @@ function adicionar() {
     let precoProduto = produto.split("R$")[1];
     
     //inserir produto no carrinho de compras
-    let listaProdutos = document.getElementById("lista-produtos");
     let produtoSelecionado = `<section class="carrinho__produtos__produto">
     <span class="texto-azul">${quantidadeProduto}x</span> ${nomeProduto} <span class="texto-azul">R$${precoProduto}</span>
     </section>`;
@@ -26,10 +26,11 @@ function adicionar() {
     precoTotal = precoProdutoTotal + precoTotal;
 
     carrinhoTotal.textContent = `R$${precoTotal}`;
-
-
-    console.log(nomeProduto);
-    console.log(precoProduto);
 }
 
-console.log(precoTotal);
+
+function limpar() {
+    listaProdutos.innerHTML = "";
+    carrinhoTotal.textContent = "";
+    precoTotal = 0;
+}
